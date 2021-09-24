@@ -1,0 +1,74 @@
+#Tabela simbola
+Id			Tip		  Vrednost		Sekcija			Naziv
+0001	|	local	|	 0000	|	apsolute	|	apsolute
+0008	|	local	|	 0054	|	apsolute		|	asciiCode
+0005	|	local	|	 0000	|	isr		|	isr
+0009	|	local	|	 0000	|	isr		|	isr_reset
+000b	|	local	|	 0016	|	isr		|	isr_terminal
+000a	|	local	|	 0005	|	isr		|	isr_timer
+0002	|	local	|	 0000	|	ivt		|	ivt
+0004	|	extern	|	 0000	|	undefined		|	myCounter
+0003	|	extern	|	 0000	|	undefined		|	myStart
+0007	|	local	|	 ff02	|	apsolute		|	term_in
+0006	|	local	|	 ff00	|	apsolute		|	term_out
+0000	|	local	|	 0000	|	undefined	|	undefined
+
+#Tabela sekcija
+Id		 Naziv			Velicina
+-1	|	apsolute	|	0006
+ 2	|	isr		|	003e
+ 1	|	ivt		|	0010
+ 0	|	undefined	|	0000
+
+#.Rel.apsolute
+Ofset		Tip			 Podatak/Instrukcija    Sekcija	    Simbol
+
+#.apsolute
+0000: 00 ff 
+0002: 02 ff 
+0004: 54 00 
+
+#.Rel.isr
+Ofset		Tip			 Podatak/Instrukcija    Sekcija	    Simbol
+0004	|	R_386_16	|   instrukcija		|	isr	|	myStart
+002a	|	R_386_16_PC	|   instrukcija		|	isr	|	myCounter
+0036	|	R_386_16	|   instrukcija		|	isr	|	myCounter
+
+#.isr
+0000: 50 ff 00 00 00 
+0005: b0 06 12 
+0008: a0 0f 00 00 54 
+000d: b0 0f 04 ff 00 
+0012: a0 06 42 
+0015: 20 
+0016: b0 06 12 
+0019: b0 16 12 
+001c: a0 0f 04 ff 02 
+0021: b0 0f 04 ff 00 
+0026: a0 07 03 ff fe 
+002b: a0 1f 00 00 01 
+0030: 70 01 
+0032: b0 0f 04 00 00 
+0037: a0 16 42 
+003a: a0 06 42 
+003d: 20 
+
+#.Rel.ivt
+Ofset		Tip			 Podatak/Instrukcija    Sekcija	    Simbol
+0000	|	R_386_16	|   podatak		|	ivt	|	isr
+0004	|	R_386_16	|   podatak		|	ivt	|	isr
+0006	|	R_386_16	|   podatak		|	ivt	|	isr
+
+#.ivt
+0000: 00 00 
+0002: 00 00 
+0004: 05 00 
+0006: 16 00 
+0008: 00 00 00 00 00 00 00 00 
+
+#.Rel.undefined
+Ofset		Tip			 Podatak/Instrukcija    Sekcija	    Simbol
+
+#.undefined
+
+

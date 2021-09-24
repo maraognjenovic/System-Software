@@ -1,0 +1,96 @@
+#Tabela sekcija
+Id		  Velicina		 VA			  Ime
+-1		|	0008	|	0000	|	apsolute
+1		|	003e	|	0010	|	isr
+2		|	0010	|	0000	|	ivt
+3		|	001c	|	004e	|	myCode
+4		|	0002	|	006a	|	myData
+0		|	0000	|	0000	|	undefined
+
+#Tabela simbola
+Id		  Vrednost		 Tip				Ime				  Sekcija
+-001	|	0000	|	local	|		apsolute				apsolute
+0005	|	0054	|	local	|		asciiCode				apsolute
+0001	|	0010	|	local	|		isr				isr
+0006	|	0010	|	local	|		isr_reset				isr
+0007	|	0026	|	local	|		isr_terminal				isr
+0008	|	0015	|	local	|		isr_timer				isr
+0002	|	0000	|	local	|		ivt				ivt
+0003	|	004e	|	local	|		myCode				myCode
+000b	|	006a	|	global	|		myCounter				myData
+0004	|	006a	|	local	|		myData				myData
+000c	|	004e	|	global	|		myStart				myCode
+0009	|	ff02	|	local	|		term_in				apsolute
+000a	|	ff00	|	local	|		term_out				apsolute
+000d	|	ff10	|	local	|		tim_cfg				apsolute
+0000	|	0000	|	local	|		undefined				undefined
+000e	|	0058	|	local	|		wait				myCode
+
+#Relokaciona tablela
+Ime fajla			Offset			Tip			Podatak/Instrukcija		Ime simbola			Ime sekcije
+test/interrupts.o	|	0000	|	R_386_16	|	  podatak			|		isr			ivt
+test/interrupts.o	|	0004	|	R_386_16	|	  podatak			|		isr			ivt
+test/interrupts.o	|	0006	|	R_386_16	|	  podatak			|		isr			ivt
+test/interrupts.o	|	0004	|	R_386_16	|	instrukcija			|		myStart			isr
+test/interrupts.o	|	002a	|	R_386_16_PC	|	instrukcija			|		myCounter			isr
+test/interrupts.o	|	0036	|	R_386_16	|	instrukcija			|		myCounter			isr
+test/main.o	|	000e	|	R_386_16	|	instrukcija			|		myCounter			myCode
+test/main.o	|	001a	|	R_386_16	|	instrukcija			|		myCode			myCode
+
+#Sadrzaj.apsolute
+Adresa			Sadrzaj
+0000  :  00 ff 02 ff 54 00 10 ff 
+
+
+#Sadrzaj.isr
+Adresa			Sadrzaj
+0010  :  50 ff 00 00 4e b0 06 12 
+0018  :  a0 0f 00 00 54 b0 0f 04 
+0020  :  ff 00 a0 06 42 20 b0 06 
+0028  :  12 b0 16 12 a0 0f 04 ff 
+0030  :  02 b0 0f 04 ff 00 a0 07 
+0038  :  03 00 2f a0 1f 00 00 01 
+0040  :  70 01 b0 0f 04 00 6a a0 
+0048  :  16 42 a0 06 42 20 
+
+#Sadrzaj.ivt
+Adresa			Sadrzaj
+0000  :  10 00 00 00 15 00 26 00 
+0008  :  00 00 00 00 00 00 00 00 
+
+
+#Sadrzaj.myCode
+Adresa			Sadrzaj
+004e  :  a0 0f 00 00 01 b0 0f 04 
+0056  :  ff 10 a0 0f 04 00 6a a0 
+005e  :  1f 00 00 05 74 01 52 ff 
+0066  :  00 00 58 00 
+
+#Sadrzaj.myData
+Adresa			Sadrzaj
+006a  :  00 00 
+
+
+
+#Pomocni podaci:
+Sekcija: apsolute
+      Ime fajla     |  Ime sekcije  |Velicina sekcije|Opseg sekcije
+	test/interrupts.o		apsolute	  			6 			od 0 do 6
+	test/main.o		apsolute	  			2 			od 6 do 8
+
+Sekcija: isr
+      Ime fajla     |  Ime sekcije  |Velicina sekcije|Opseg sekcije
+	test/interrupts.o		isr	  			3e 			od 10 do 4e
+
+Sekcija: ivt
+      Ime fajla     |  Ime sekcije  |Velicina sekcije|Opseg sekcije
+	test/interrupts.o		ivt	  			10 			od 0 do 10
+
+Sekcija: myCode
+      Ime fajla     |  Ime sekcije  |Velicina sekcije|Opseg sekcije
+	test/main.o		myCode	  			1c 			od 4e do 6a
+
+Sekcija: myData
+      Ime fajla     |  Ime sekcije  |Velicina sekcije|Opseg sekcije
+	test/main.o		myData	  			2 			od 6a do 6c
+
